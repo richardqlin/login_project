@@ -29,12 +29,12 @@ collection=mongo.db.AccountInformation
 
 
 
-@app.route('/registration', methods=['POST','GET'])
+@app.route('https://arcane-tor-21692.herokuapp.com/registration', methods=['POST','GET'])
 def registration():
 	
 	return render_template('registration.html',current_time=datetime.utcnow())
 
-@app.route('/registeruser', methods=['POST'])
+@app.route('https://arcane-tor-21692.herokuapp.com/registeruser', methods=['POST'])
 def registeruser():
 	global users
 	first_name=request.form['first_name']
@@ -51,11 +51,11 @@ def registeruser():
 	return redirect('login')
 	#return 'Name: {first_name} {last_name} and Email {email}'.format(first_name=first_name,last_name=last_name,email=email)
 
-@app.route('/login',methods=['GET','POST'])
+@app.route('https://arcane-tor-21692.herokuapp.com/login',methods=['GET','POST'])
 def login():
 	return render_template('login.html',current_time=datetime.utcnow())
 
-@app.route('/loginuser',methods=['GET', 'POST'])
+@app.route('https://arcane-tor-21692.herokuapp.com/loginuser',methods=['GET', 'POST'])
 
 def loginuser():
 	#global users
@@ -80,11 +80,11 @@ def loginuser():
 		return redirect('/login')
 		#return '<h1> this email id and password combination is incorrect</h1>'
 
-@app.route('/invalid')
+@app.route('https://arcane-tor-21692.herokuapp.com/invalid')
 def invalid():
 	return render_template('invalid.html',current_time=datetime.utcnow())
 
-@app.route('/home')
+@app.route('https://arcane-tor-21692.herokuapp.com/home')
 def home():
 	if 'user' not in session:
 		return redirect('/login')
@@ -99,7 +99,7 @@ def home():
 	'''
 	return render_template('home.html',current_time=datetime.utcnow(),first_name=first_name)
 
-@app.route('/')
+@app.route('https://arcane-tor-21692.herokuapp.com/')
 def index():
 	flash('hello user')
 	return render_template('index.html',current_time=datetime.utcnow())
@@ -110,7 +110,7 @@ def logout():
 	return redirect('/login')
 
 
-@app.route('/listall')
+@app.route('https://arcane-tor-21692.herokuapp.com/listall')
 def all():
 	collection = mongo.db.AccountInformation
 	user = [x for x in collection.find({})]
