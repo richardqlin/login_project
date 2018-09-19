@@ -17,6 +17,7 @@ app=Flask(__name__)
 #app.config['MONGO_URI']='mongodb://localhost:27017/UserAccount'
 app.config['MONGO_URI']='mongodb://richardqlin:linqiwei1@ds261302.mlab.com:61302/richardqlin'
 
+
 mongo=PyMongo(app)
 
 Bootstrap(app)
