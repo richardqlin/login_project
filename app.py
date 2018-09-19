@@ -128,4 +128,4 @@ def page_not_found(e):
 	return render_template('error500.html',error=e),500
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0' ,debug=True)
+	app.run(host='https://arcane-tor-21692.herokuapp.com/' ,debug=True)

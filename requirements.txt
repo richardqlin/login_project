@@ -1,3 +1,7 @@
 Flask == 1.0.2
 pymongo ==  3.7.1
 gunicorn==19.7.1
+errorhandler==0.1.0
+flask_bootstrap==3.3.7.0
+flask_moment==0.6.0
+datetime==2.3
