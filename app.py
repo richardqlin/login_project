@@ -104,7 +104,7 @@ def index():
 	flash('hello user')
 	return render_template('index.html',current_time=datetime.utcnow())
 
-@app.route('/logout',methods=['GET','POST'])
+@app.route('https://arcane-tor-21692.herokuapp.com/logout',methods=['GET','POST'])
 def logout():
 	del session['user']
 	return redirect('/login')
