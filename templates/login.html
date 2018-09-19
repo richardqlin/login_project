@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% extends "bootstrap/base.html" %}
+
+	{% block title%}
+    A stylish Page
+	{%endblock%}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class='alter.alter-warning'>
+	<button type=button' class='close' data-dismiss='alter'>X</button>
+<h3>	{{ message }}  </h3>
+</div>
+{% endfor %}
+
+	<div class ='entry'>
+
+<div class ='jumbotron text-center'>
+	<h1>Login, there!</h1>
+
+	<form action='/loginuser' method='post'>
+		<div class="form-group" >
+		<input class="form-control" type="text" name="email" placeholder="Email" required><br>
+		<input class="form-control" type="password" name="password" placeholder="Password" required><br>
+		</div>
+		
+		<button type="submit" class="btn btn-success" >Login</button>
+
+			
+	</form>
+<p>This is a really login webpage</p>
+</div>
+</div>
+
+<div class='jumbotron text-center' >
+	<h3>{{ moment(current_time).format('LLLL') }}</h3>
+<p>You came here {{ moment(current_time).fromNow(refresh=True)}}
+</div>
+<a href="/listall" >List All</a>
+{% endblock %}
+</body>
+</html>

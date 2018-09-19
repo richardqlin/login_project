@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+{% extends "bootstrap/base.html" %}
+
+{% block title%}
+    A stylish Page
+{%endblock%}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+{% block content %}
+ <div class ="jumbotron text-center">
+        <h1> Invalid, there!</h1>
+        <p>This is a really invalid webpage</p>
+    </div>
+<div class ="jumbotron text-center">
+        <p> {{ moment(current_time).format('LLLL') }}</p>
+        <p>You came here {{ moment(current_time).fromNow(refresh=True) }}
+    </div>
+
+{% endblock %}
+</body>
+</html>

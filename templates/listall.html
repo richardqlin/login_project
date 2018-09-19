@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+{% extends "bootstrap/base.html" %}
+
+
+
+{% block content %}
+<div class ='jumbotron text-center'>
+<h1> Welcome, {{ first_name }} </h1>
+<p>This is a really welcome webpage</p>
+</div>
+
+<div class ='jumbotron text-center'>
+	{% for u in user %}
+<h4> {{ u }}</h4>
+
+{% endfor %}
+</div>
+
+
+{% endblock %}
+</body>
+</html>

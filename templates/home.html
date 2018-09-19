@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+{% extends "bootstrap/base.html" %}
+
+
+
+{% block content %}
+<div class ='jumbotron text-center'>
+<h1> Welcome, {{ first_name }} </h1>
+<p>This is a really welcome webpage</p>
+</div>
+
+
+<div class="col-xs-2">
+	<form method="post" action="/logout">
+		<input type="submit" Value="Logout" class="form-control" name="">
+	</form>
+</div>
+
+{% endblock %}
+</body>
+</html>
