@@ -25,12 +25,24 @@
 	<h1>My Own Website !</h1>
 	<p>This is a really good looking webpage</p>
 </div>
+
+<div class="StaticLoggedOutHomePage-noSignupForm">
+            <h2 class="StaticLoggedOutHomePage-signupSubtitle">Join Us today.</h2>
+            <div class="StaticLoggedOutHomePage-buttons">
+              <a class="js-nav EdgeButton EdgeButton--medium EdgeButton--primary StaticLoggedOutHomePage-buttonSignup" href="/SignUp" >
+                Sign Up
+              </a>
+              <a class="js-nav EdgeButton EdgeButton--medium EdgeButton--secondary StaticLoggedOutHomePage-buttonLogin" href="/login">
+                Log in
+              </a>
+            </div>
+          </div>
 <div class="jumbotron text-center">
 <p>{{ moment(current_time).format('LLLL')}} </p>
 <p>You came here {{moment(current_time).fromNow(refresh=True)}}</p>
 </div>
 
-<a href="/registration" >registration</a>
+<a href="/registeruser" >registration</a>
 
 {% endblock %}
 </body>

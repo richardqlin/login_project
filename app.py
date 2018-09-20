@@ -29,33 +29,49 @@ collection=mongo.db.AccountInformation
 
 
 
-@app.route('https://arcane-tor-21692.herokuapp.com/registration', methods=['POST','GET'])
-def registration():
+#@app.route('/registration', methods=['POST','GET'])
+#def registration():
 	
-	return render_template('registration.html',current_time=datetime.utcnow())
+#	return render_template('registration.html',current_time=datetime.utcnow())
 
-@app.route('https://arcane-tor-21692.herokuapp.com/registeruser', methods=['POST'])
+@app.route('/SignUp', methods=['GET','POST'])
 def registeruser():
-	global users
-	first_name=request.form['first_name']
-	last_name=request.form['last_name']
-	email=request.form['email']
-	password = request.form['password']
-	users={}
-	users={'first_name':first_name,'last_name':last_name,'email':email,'password':password}
+	
+	#collection = mongo.db.AccountInformation
+	#user = collection.find_one({'email': email})
 	collection = mongo.db.AccountInformation
-	#usersDetails={'firstName':'John','LastName':'Smith','email':'john.Smith@email.com','password':'123'}
-	#print users
-	collection.insert(users)
-	flash('User already registered')
-	return redirect('login')
+	user = [x['email'] for x in collection.find({}) ]
+	
+	if request.method=='POST':
+		first_name=request.form['first_name']
+		last_name=request.form['last_name']
+		email=request.form['email']
+		password = request.form['password']
+		#collection = mongo.db.AccountInformation
+		#user = collection.find_one({'email': email})
+		#user['_id'] =str(user['_id'])
+	
+		
+		if email in user:
+			flash('User already registered')
+			return redirect('login')
+		else:
+			users={}
+			users={'first_name':first_name,'last_name':last_name,'email':email,'password':password}
+		
+		#usersDetails={'firstName':'John','LastName':'Smith','email':'john.Smith@email.com','password':'123'}
+		#print users
+			collection.insert(users)
+		
+			return redirect('login')
 	#return 'Name: {first_name} {last_name} and Email {email}'.format(first_name=first_name,last_name=last_name,email=email)
-
-@app.route('https://arcane-tor-21692.herokuapp.com/login',methods=['GET','POST'])
+	return render_template('registration.html',current_time=datetime.utcnow())
+@app.route('/login',methods=['GET','POST'])
 def login():
+
 	return render_template('login.html',current_time=datetime.utcnow())
 
-@app.route('https://arcane-tor-21692.herokuapp.com/loginuser',methods=['GET', 'POST'])
+@app.route('/loginuser',methods=['GET', 'POST'])
 
 def loginuser():
 	#global users
@@ -80,17 +96,17 @@ def loginuser():
 		return redirect('/login')
 		#return '<h1> this email id and password combination is incorrect</h1>'
 
-@app.route('https://arcane-tor-21692.herokuapp.com/invalid')
+@app.route('/invalid')
 def invalid():
 	return render_template('invalid.html',current_time=datetime.utcnow())
 
-@app.route('https://arcane-tor-21692.herokuapp.com/home')
+@app.route('/home')
 def home():
 	if 'user' not in session:
 		return redirect('/login')
 	user = session['user']
 	first_name=user['first_name']
-
+	r=requests.get('https://arcane-tor-21692.herokuapp.com/get',first_name=first_name)
 	'''
 	collection = mongo.db.AccountInformation
 	user = collection.find_one({'email': email})
@@ -99,18 +115,18 @@ def home():
 	'''
 	return render_template('home.html',current_time=datetime.utcnow(),first_name=first_name)
 
-@app.route('https://arcane-tor-21692.herokuapp.com/')
+@app.route('/')
 def index():
 	flash('hello user')
 	return render_template('index.html',current_time=datetime.utcnow())
 
-@app.route('https://arcane-tor-21692.herokuapp.com/logout',methods=['GET','POST'])
+@app.route('/logout',methods=['GET','POST'])
 def logout():
 	del session['user']
 	return redirect('/login')
 
 
-@app.route('https://arcane-tor-21692.herokuapp.com/listall')
+@app.route('/listall')
 def all():
 	collection = mongo.db.AccountInformation
 	user = [x for x in collection.find({})]
