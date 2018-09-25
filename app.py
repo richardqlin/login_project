@@ -28,8 +28,6 @@ app.config['SECRET_KEY']='SomescreteText'
 
 collection=mongo.db.AccountInformation
 
-
-
 #@app.route('/registration', methods=['POST','GET'])
 #def registration():
 	
