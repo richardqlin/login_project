@@ -16,7 +16,7 @@ app=Flask(__name__)
 #app= Flask('UserAccount')
 
 #app.config['MONGO_URI']='mongodb://localhost:27017/UserAccount'
-app.config['MONGO_URI']='mongodb://richardqlin:linqiwei1@ds261302.mlab.com:61302/richardqlin'
+app.config['MONGOLAB_URI']='mongodb://richardqlin:linqiwei1@ds261302.mlab.com:61302/richardqlin'
 
 
 mongo=PyMongo(app)
@@ -106,8 +106,9 @@ def home():
 	if 'user' not in session:
 		return redirect('/login')
 	user = session['user']
+	print user
 	first_name=user['first_name']
-	r=requests.get('https://arcane-tor-21692.herokuapp.com/get',first_name=first_name)
+	#r=requests.get('https://arcane-tor-21692.herokuapp.com/get',first_name=first_name)
 	'''
 	collection = mongo.db.AccountInformation
 	user = collection.find_one({'email': email})
@@ -131,6 +132,8 @@ def logout():
 def all():
 	collection = mongo.db.AccountInformation
 	user = [x for x in collection.find({})]
+	for x in user:
+		x['_id']=str(x['_id'])
 	return render_template('listall.html',user=user) 
 
 @app.errorhandler(404)
