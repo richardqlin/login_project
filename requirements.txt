@@ -5,3 +5,4 @@ errorhandler==2.0.1
 flask_bootstrap==3.3.7.1
 flask_moment==0.6.0
 requests==2.19.1
+flask_pymongo==2.1.0
